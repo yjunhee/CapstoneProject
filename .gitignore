@@ -1,0 +1,13 @@
+# 의존성 패키지 폴더 무시
+node_modules/
+Backend/node_modules/
+
+# 환경변수 파일 무시 (API 키 보호)
+.env
+Backend/.env
+
+# 🚀 에디터 설정 폴더 무시 (개인 설정 공유 방지)
+.idea/
+*.iml
+.vscode/
+.DS_Store

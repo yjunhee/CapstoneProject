@@ -1,0 +1,5 @@
+theme: jekyll-theme-cayman
+title: Cultour (관광지 스탬프 투어)
+description: 주변 문화재를 방문하고, 스탬프를 모으며 즐기는 역사 탐방 웹 서비스
+url: "https://kookmin-sw.github.io"
+baseurl: "/2026-capstone-03"

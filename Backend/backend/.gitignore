@@ -1,0 +1,50 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### 🚀 여기서부터 우리가 추가한 맞춤형 설정! ###
+
+# 1. 보안 파일 (DB 비밀번호 등)
+src/main/resources/application.properties
+
+# 2. 로그 파일 (서버 실행 시 쌓이는 무거운 텍스트 파일들)
+*.log
+logs/
+
+# 3. OS 자동 생성 파일 (팀원 중 맥북 쓰는 사람이 있을 경우 찌꺼기 파일 올라가는 것 방지)
+.DS_Store
+._*
