@@ -29,18 +29,32 @@
 | **Database** | MySQL |
 | **AI** | Python |
 
-## 담당 기능 구현  
-**Backend / Data**
-- Spring Boot API 설계 및 개발
-- WebSocket 구축
-- Kakao Map API 연동 및 스탬프 로직 구현
+## 담당 기능
 
-### Spring Boot API 설계 및 개발
-내용
-### WebSocket 구축
-내용
-### Kakao Map API 연동 및 스탬프 로직 구현
-내용
+| 담당 기능 | 주요 구현 내용 |
+|---|---|
+| Backend API | Spring Boot 기반 Controller-Service-Repository 구조 및 REST API 구현 |
+| 실시간 AI 인증 | Spring WebSocket ↔ Python AI 서버 간 실시간 이미지 및 인증 결과 통신 구현 |
+| 스탬프 시스템 | 사용자-관광지 관계 기반 스탬프 발급 및 DB Unique Constraint를 통한 중복 획득 방지 |
+| 지도 서비스 | Kakao Map API를 활용한 관광지 위치 및 Marker 표시 |
+
+### 핵심 구현
+
+**Spring Boot Backend**
+
+Controller → Service → Repository 계층을 분리하여 사용자, 관광지, 퀴즈, 스탬프 관련 REST API를 구현했습니다.
+
+**WebSocket 기반 AI 인증**
+
+사용자의 카메라 이미지를 WebSocket을 통해 Spring Boot 서버에서 Python AI 서버로 전달하고, AI 서버에서 계산한 이미지 유사도 및 인증 결과를 다시 Frontend로 전달하는 실시간 통신 구조를 구축했습니다.
+
+**스탬프 중복 방지**
+
+사용자와 관광지의 조합에 Unique Constraint를 적용하여 동일 관광지의 스탬프가 중복 저장되지 않도록 데이터베이스 수준에서 정합성을 보장했습니다.
+
+**Kakao Map**
+
+Kakao Map API를 활용하여 관광지 위치를 지도에 표시하고 사용자가 관광지를 탐색한 후 상세 정보 및 방문 인증으로 이어질 수 있도록 구현했습니다.
 
 ## 팀원
 
