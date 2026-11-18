@@ -40,7 +40,7 @@ public class LandmarkService {
                     .lng(landmark.getLng())
                     .region(landmark.getRegion())
                     .category(landmark.getCategory())
-                    .distance(0.0) // 나중에 GPS 로직 추가할 자리
+                    .distance(0.0) 
                     .stampCollected(isCollected)
                     .collectedAt(isCollected ? stamp.getCollectedAt() : null)
                     .build();

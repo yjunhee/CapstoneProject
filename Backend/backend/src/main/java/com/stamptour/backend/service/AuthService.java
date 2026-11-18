@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
+
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +22,12 @@ public class AuthService {
     private final UserRepository userRepository;
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
+    @Value("${naver.client.id}")
+    private String naverClientId;
+    @Value("${naver.client.secret}")
+    private String naverClientSecret;
+    @Value("${google.client.secret}")
+    private String googleClientSecret;
 
     // 카카오 로그인
     public User kakaoLogin(String code) throws Exception {
@@ -59,9 +67,13 @@ public class AuthService {
 
     // 네이버
     public User naverLogin(String code, String state) throws Exception {
-        String tokenUrl = String.format("https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=%s&client_secret=%s&code=%s&state=%s",
-                "OU5On9cK56h1zUDeUaAe", "h5WeC06E1q", code, state);
-
+        String tokenUrl = String.format(
+            "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=%s&client_secret=%s&code=%s&state=%s",
+            naverClientId,
+            naverClientSecret,
+            code,
+            state
+        );
         ResponseEntity<String> tokenResponse = restTemplate.getForEntity(tokenUrl, String.class);
         JsonNode tokenNode = objectMapper.readTree(tokenResponse.getBody());
         String accessToken = tokenNode.get("access_token").asText();
@@ -88,7 +100,7 @@ public class AuthService {
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("client_id", "147281860929-h7ovf71ou4ggb1jve6coujee7fgkqer1.apps.googleusercontent.com");
-        params.add("client_secret", "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");
+        params.add("client_secret", googleClientSecret);
         params.add("code", code);
         params.add("grant_type", "authorization_code");
         params.add("redirect_uri", "http://localhost:5173/googlelogin");
